@@ -6,3 +6,5 @@ export const mockUser = {
     age: 31,
   },
 };
+
+export default mockUser;
