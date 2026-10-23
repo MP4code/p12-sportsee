@@ -1,4 +1,4 @@
-import React from "react";
+import { DataProvider } from "./context/DataContext.jsx";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -8,7 +8,6 @@ import Reglage from "./pages/Reglage.jsx";
 import Communaute from "./pages/Communaute.jsx";
 import Error from "./pages/Error.jsx";
 import Home from "./pages/Home.jsx";
-
 
 const router = createBrowserRouter([
   {
@@ -40,7 +39,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <DataProvider>
     <RouterProvider router={router} />
-  </React.StrictMode>,
+  </DataProvider>,
 );
