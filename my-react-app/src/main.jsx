@@ -19,7 +19,7 @@ const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path: "profil",
+        path: "profil/:id",
         Component: Profil,
       },
       {

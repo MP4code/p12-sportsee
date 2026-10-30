@@ -16,10 +16,10 @@ const Header = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/profil">Profil</NavLink>
+            <NavLink to="/profil/:id">Profil</NavLink>
           </li>
           <li>
-            <NavLink to="/reglages">Réglages</NavLink>
+            <NavLink to="/reglage">Réglages</NavLink>
           </li>
           <li>
             <NavLink to="/communaute">Communauté</NavLink>

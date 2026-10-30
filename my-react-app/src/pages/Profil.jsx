@@ -1,23 +1,15 @@
-import { useContext, useEffect, useState } from "react";
-import { DataContext } from "../context/DataContext";
+import { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import { getDashboard } from "../services/dashboardService";
-
-import ActivityChart from "../components/ActivityChart";
+import KindActivityChart from "../components/KindActivityChart";
+import "../App.css";
 import AverageSessionsChart from "../components/AverageSessionsChart";
-import KindActivityChart from "../components/kindActivityChart";
 import ScoreChart from "../components/ScoreChart";
 
-/**
- * la page Profil qui affiche le tableau de bord de l'utilisateur.
- * @component montrant les graphiques d'activité, de sessions moyennes, de performance et de score.
- * @param {Object} props - Les propriétés du composant.
- * @param {boolean} props.useMocks - Indique si les données doivent être récupérées depuis les mocks ou l'API.
- * @example
- * @returns
- */
 const Profil = () => {
-  const { useMocks, setUseMocks } = useContext(DataContext);
-  const [userId, setUserId] = useState(12);
+  const { id } = useParams();
+  const location = useLocation();
+  const source = location.state?.source ?? "mock";
 
   const [dashboard, setDashboard] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -26,85 +18,72 @@ const Profil = () => {
   useEffect(() => {
     let ignore = false;
 
-    const loadDashboard = async () => {
+    async function loadDashboard() {
       setLoading(true);
       setError("");
 
       try {
-        const data = await getDashboard(userId, useMocks);
+        const data = await getDashboard(id, source === "mock");
 
         if (!ignore) {
           setDashboard(data);
         }
-      } catch (err) {
+      } catch (error) {
         if (!ignore) {
-          setError(err.message);
+          setError(error.message);
         }
       } finally {
         if (!ignore) {
           setLoading(false);
         }
       }
-    };
+    }
 
     loadDashboard();
 
     return () => {
       ignore = true;
     };
-  }, [userId, useMocks]);
+  }, [id, source]);
+
+  if (loading) return <p>Chargement…</p>;
+
+  if (error) {
+    return (
+      <p role="alert">
+        Impossible de charger le profil. Vérifie l’ID de l’utilisateur, la
+        source choisie et que l’API est démarrée si tu l’utilises.
+      </p>
+    );
+  }
+
+  if (!dashboard) return null;
 
   return (
-    <div>
-      <div className="profil_controls">
-        <label htmlFor="source-select">Source : </label>
-        <select
-          id="source-select"
-          value={useMocks ? "mock" : "api"}
-          onChange={(event) => setUseMocks(event.target.value === "mock")}
+    <div className="profil">
+      <p>Source : {source}</p>
+      <h1>Bonjour {dashboard.user.userInfos.firstName}</h1>
+
+      <section className="charts">
+        <div
+          className="kindActivity"
+          style={{ width: "258px", height: "263px" }}
         >
-          <option value="mock">Mocks</option>
-          <option value="api">API</option>
-        </select>
-
-        <label htmlFor="user-select">Utilisateur : </label>
-        <select
-          id="user-select"
-          value={userId}
-          onChange={(event) => setUserId(Number(event.target.value))}
-        >
-          <option value={12}>Utilisateur 12</option>
-          <option value={18}>Utilisateur 18</option>
-        </select>
-      </div>
-
-      {loading ? (
-        <p>Chargement...</p>
-      ) : error ? (
-        <p role="alert">{error}</p>
-      ) : dashboard ? (
-        <>
-          <h1>
-            Bonjour{" "}
-            <span className="user-name">
-              {dashboard.user.userInfos.firstName}
-            </span>
-          </h1>
-
-          <ActivityChart sessions={dashboard.activity.sessions} />
-
-          <AverageSessionsChart sessions={dashboard.averageSessions.sessions} />
-
           <KindActivityChart
             sessions={dashboard.performance.data}
             kind={dashboard.performance.kind}
           />
-
-          <ScoreChart
-            score={dashboard.user.todayScore ?? dashboard.user.score ?? 0}
-          />
-        </>
-      ) : null}
+        </div>
+        <div
+          className="averageSessionsChart"
+          style={{ width: "258px", height: "263px" }}
+        >
+          <AverageSessionsChart sessions={dashboard.averageSessions.sessions} />
+        </div>
+        <div className="scoreChart" style={{ width: "258px", height: "263px" }}>
+          <ScoreChart score={dashboard.user.todayScore} />
+        </div>
+      </section>
     </div>
   );
 };

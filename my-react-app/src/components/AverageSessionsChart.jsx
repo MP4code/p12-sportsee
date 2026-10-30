@@ -12,9 +12,13 @@ const days = ["L", "M", "M", "J", "V", "S", "D"];
 const AverageSessionsChart = ({ sessions }) => {
   return (
     <section>
-      <h2>Durée moyenne des sessions</h2>
+      <p>Durée moyenne des sessions</p>
 
-      <ResponsiveContainer width="100%" height={250}>
+      <ResponsiveContainer
+        width="100%"
+        height={230}
+        padding={{ top: 20, right: 20, bottom: 10, left: 20 }}
+      >
         <LineChart
           data={sessions}
           margin={{ top: 20, right: 20, bottom: 10, left: 20 }}
@@ -24,6 +28,7 @@ const AverageSessionsChart = ({ sessions }) => {
             tickFormatter={(day) => days[day - 1]}
             tickLine={false}
             axisLine={false}
+            style={{ fontSize: "12px", fill: "#FFFFFF" }}
           />
 
           <YAxis hide domain={[0, "dataMax + 10"]} />

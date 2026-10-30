@@ -7,12 +7,12 @@ import {
 } from "recharts";
 
 const translations = {
-  cardio: "Cardio",
-  energy: "Énergie",
-  endurance: "Endurance",
-  strength: "Force",
-  speed: "Vitesse",
   intensity: "Intensité",
+  speed: "Vitesse",
+  strength: "Force",
+  endurance: "Endurance",
+  energy: "Énergie",
+  cardio: "Cardio",
 };
 
 const KindActivityChart = ({ sessions, kind }) => {

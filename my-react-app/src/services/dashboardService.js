@@ -31,12 +31,14 @@ const fetchData = async (path) => {
 export const getDashboard = async (userId, useMocks) => {
   const id = Number(userId);
 
+  // model de class à faire pour les données du dashboard
   if (useMocks) {
     const dashboard = {
       user: users.find((user) => user.id === id),
       activity: activities.find((activity) => activity.userId === id),
       performance: performances.find((item) => item.userId === id),
       averageSessions: averageSessions.find((item) => item.userId === id),
+      score: users.find((user) => user.id === id)?.todayScore,
     };
 
     if (Object.values(dashboard).some((value) => !value)) {
