@@ -7,6 +7,14 @@ import AverageSessionsChart from "../components/AverageSessionsChart";
 import KindActivityChart from "../components/kindActivityChart";
 import ScoreChart from "../components/ScoreChart";
 
+/**
+ * la page Profil qui affiche le tableau de bord de l'utilisateur.
+ * @component montrant les graphiques d'activité, de sessions moyennes, de performance et de score.
+ * @param {Object} props - Les propriétés du composant.
+ * @param {boolean} props.useMocks - Indique si les données doivent être récupérées depuis les mocks ou l'API.
+ * @example
+ * @returns
+ */
 const Profil = () => {
   const { useMocks, setUseMocks } = useContext(DataContext);
   const [userId, setUserId] = useState(12);

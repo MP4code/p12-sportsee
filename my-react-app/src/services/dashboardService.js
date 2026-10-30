@@ -3,6 +3,13 @@ import users from "../mocks/user";
 import performances from "../mocks/kindActivity";
 import averageSessions from "../mocks/averageSessions";
 
+/**
+ * FetchData fonction qui récupère les données du profil utilisateur depuis l'API.
+ * @param {string} path - Le chemin de l'API pour récupérer les données.
+ * @returns {Promise<Object>} - Les données du profil utilisateur.
+ * @throws {Error} - Si la requête échoue ou si les données sont introuvables.
+ *
+ */
 const API_URL = "http://localhost:3000";
 
 const fetchData = async (path) => {
@@ -17,6 +24,10 @@ const fetchData = async (path) => {
   return result.data;
 };
 
+// getDashboard fonction qui récupère les données du tableau de bord de l'utilisateur.
+// Elle utilise les mocks si useMocks est true, sinon elle récupère les données depuis l'API.
+// @param {number} userId - L'identifiant de l'utilisateur.
+// @param {boolean} useMocks - Indique si les données doivent être récupérées depuis les mocks ou l'API.
 export const getDashboard = async (userId, useMocks) => {
   const id = Number(userId);
 
@@ -35,6 +46,8 @@ export const getDashboard = async (userId, useMocks) => {
     return dashboard;
   }
 
+  // Si useMocks est false, on récupère les données depuis l'API
+  // On attend que toutes les requêtes soient terminées avant de retourner les données
   const [user, activity, performance, sessions] = await Promise.all([
     fetchData(`/user/${id}`),
     fetchData(`/user/${id}/activity`),
