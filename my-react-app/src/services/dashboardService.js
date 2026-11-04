@@ -39,6 +39,7 @@ export const getDashboard = async (userId, useMocks) => {
       performance: performances.find((item) => item.userId === id),
       averageSessions: averageSessions.find((item) => item.userId === id),
       score: users.find((user) => user.id === id)?.todayScore,
+      nutriments: users.find((user) => user.id === id)?.keyData,
     };
 
     if (Object.values(dashboard).some((value) => !value)) {
@@ -55,6 +56,8 @@ export const getDashboard = async (userId, useMocks) => {
     fetchData(`/user/${id}/activity`),
     fetchData(`/user/${id}/performance`),
     fetchData(`/user/${id}/average-sessions`),
+    fetchData(`/user/${id}/score`), // Ajout de la récupération du score
+    fetchData(`/user/${id}/nutriments`), // Ajout de la récupération des nutriments
   ]);
 
   return {
@@ -62,5 +65,7 @@ export const getDashboard = async (userId, useMocks) => {
     activity,
     performance,
     averageSessions: sessions,
+    score: user?.todayScore,
+    nutriments: user?.keyData,
   };
 };

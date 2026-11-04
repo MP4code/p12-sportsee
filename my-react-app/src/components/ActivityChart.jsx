@@ -11,7 +11,13 @@ import {
 const ActivityChart = ({ sessions }) => {
   return (
     <section className="activity">
-      <h2>Activité quotidienne</h2>
+      <p>Activité quotidienne</p>
+      <div className="activity-header">
+        <div className="PoidsColor"></div>
+        <p>Poids (kg)</p>
+        <div className="CaloriesColor"></div>
+        <p>Calories brûlées (kCal)</p>
+      </div>
 
       <ResponsiveContainer width="100%" height={250}>
         <BarChart data={sessions} barGap={8}>

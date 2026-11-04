@@ -56,8 +56,58 @@ main {
   margin: 0 auto;
   padding: 24px;
 }
+H1 {
+  font-size: 48px;
+  font-weight: 500;
+  color: #020203;
+}
+.first-name {
+  color: #ff0101;
+  font-weight: 500;
+}
+
+.charts-Container {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  border: 2px solid #f5f5f5;
+}
 
 /*Graphiques*/
+.activity {
+  color: #ffffff;
+  width: 100%;
+  background: #fbfbfb;
+  border-radius: 5px;
+  color: #000000;
+  font-weight: bold;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+.activity-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 16px;
+  gap: 10px;
+}
+.PoidsColor {
+  width: 10px;
+  height: 10px;
+  background-color: #282d30;
+  border-radius: 10px;
+}
+.CaloriesColor {
+  width: 10px;
+  height: 10px;
+  background-color: #e60000;
+  border-radius: 10px;
+}
+.activity-header p {
+  font-size: 15px;
+  color: #74798c;
+}
+
 .kindActivity {
   color: #ffffff;
   width: 258px;
