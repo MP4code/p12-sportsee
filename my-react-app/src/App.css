@@ -135,6 +135,22 @@ h1 {
 }
 
 /* Graphique d’activité */
+.activity-tooltip {
+  background-color: #e60000;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.activity-tooltip p {
+  margin: 0;
+}
+
+.activity-tooltip p + p {
+  margin-top: 8px;
+}
+
 .activity {
   width: 100%;
   padding: 16px;
@@ -183,18 +199,36 @@ h1 {
 
 .kindActivity {
   width: 100%;
-  height: 263px;
+  height: auto;
   background-color: #282d30;
   border-radius: 5px;
+  box-sizing: border-box;
+  padding-inline: 24px;
+}
+.kindActivity svg.recharts-surface {
+  overflow: visible;
+}
+
+.kindActivity .recharts-polar-radius-axis-tick-value {
+  display: none;
+}
+.kindActivity .recharts-polar-radius-axis-line {
+  display: none;
+}
+.kindActivity .recharts-polar-angle-axis-tick-value {
+  font-size: 11px;
+  font-weight: 700;
   color: #ffffff;
 }
 
 .averageSessionsChart {
   width: 100%;
-  height: 263px;
+  height: auto;
   background-color: #ff0101;
   border-radius: 5px;
   color: #ffffff;
+  box-sizing: border-box;
+  padding-inline: 24px;
 }
 
 .averageSessionsChart p {

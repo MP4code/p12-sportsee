@@ -34,14 +34,19 @@ const AverageSessionsChart = ({ sessions }) => {
           <YAxis hide domain={[0, "dataMax + 10"]} />
 
           <Tooltip
-            formatter={(value) => [`${value} min`, "Durée"]}
+            formatter={(value) => [`${value} min`]}
             labelFormatter={(day) => `Jour ${day}`}
+            contentStyle={{
+              backgroundColor: "#FFFFFF",
+              border: "none",
+            }}
+            itemStyle={{ color: "#000000", fontWeight: "bold" }}
           />
 
           <Line
             type="monotone"
             dataKey="sessionLength"
-            stroke="#E60000"
+            stroke="#fff"
             strokeWidth={2}
             dot={false}
             activeDot={{ r: 5 }}

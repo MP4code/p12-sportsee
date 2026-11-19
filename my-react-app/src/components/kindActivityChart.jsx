@@ -31,16 +31,17 @@ const KindActivityChart = ({ sessions, kind }) => {
         aspectRatio: 1,
       }}
       responsive
+      outerRadius="55%"
       data={transformedData}
     >
       <PolarGrid />
-      <PolarAngleAxis dataKey="subject" />
-      <PolarRadiusAxis />
+      <PolarAngleAxis dataKey="subject" tick={{ fontSize: 11 }} />
+      <PolarRadiusAxis hide />
       <Radar
         name="Performances"
         dataKey="A"
-        stroke="#E60000"
-        fill="#E60000"
+        stroke="#fff"
+        fill="#FF0101"
         fillOpacity={0.7}
       />
     </RadarChart>

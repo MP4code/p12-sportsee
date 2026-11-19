@@ -8,6 +8,19 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+const ActivityTooltip = ({ active, payload }) => {
+  if (!active || !payload?.length) return null;
+
+  const { kilogram, calories } = payload[0].payload;
+
+  return (
+    <div className="activity-tooltip">
+      <p>{kilogram} kg</p>
+      <p>{calories} kCal</p>
+    </div>
+  );
+};
+
 const ActivityChart = ({ sessions }) => {
   return (
     <section className="activity">
@@ -35,12 +48,11 @@ const ActivityChart = ({ sessions }) => {
 
           <YAxis yAxisId="calories" domain={[0, "dataMax + 100"]} hide />
 
-          <Tooltip />
-
+          <Tooltip content={<ActivityTooltip />} />
           <Bar
             yAxisId="weight"
             dataKey="kilogram"
-            name="Poids (kg)"
+            name="Kg"
             fill="#282D30"
             barSize={7}
             radius={[3, 3, 0, 0]}
@@ -49,7 +61,7 @@ const ActivityChart = ({ sessions }) => {
           <Bar
             yAxisId="calories"
             dataKey="calories"
-            name="Calories brûlées (kCal)"
+            name="kCal"
             fill="#E60000"
             barSize={7}
             radius={[3, 3, 0, 0]}
