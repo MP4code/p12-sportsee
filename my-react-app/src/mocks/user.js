@@ -2,24 +2,24 @@ const users = [
   {
     id: 12,
     userInfos: {
-      firstName: "Thomas",
-      lastName: "Durand",
+      firstName: "Karl",
+      lastName: "Dovineau",
       age: 31,
     },
     todayScore: 0.12,
     keyData: {
-      calorieCount: 2900,
-      proteinCount: 80,
-      carbohydrateCount: 145,
-      lipidCount: 122,
+      calorieCount: 1930,
+      proteinCount: 155,
+      carbohydrateCount: 290,
+      lipidCount: 50,
     },
   },
   {
     id: 18,
     userInfos: {
-      firstName: "Sarah",
-      lastName: "Martin",
-      age: 28,
+      firstName: "Cecilia",
+      lastName: "Ratorez",
+      age: 34,
     },
     todayScore: 0.3,
     keyData: {

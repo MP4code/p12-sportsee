@@ -31,6 +31,7 @@ const Profil = () => {
 
       try {
         const data = await getDashboard(id, source === "mock");
+        console.log("Données du dashboard :", data);
 
         if (!ignore) {
           setDashboard(data);
@@ -112,25 +113,26 @@ const Profil = () => {
 
           <section className="charts">
             <div
-              className="kindActivity"
-              style={{ width: "258px", height: "263px" }}
-            >
-              <KindActivityChart
-                sessions={dashboard.performance.data}
-                kind={dashboard.performance.kind}
-              />
-            </div>
-            <div
               className="averageSessionsChart"
-              style={{ width: "258px", height: "263px" }}
+              style={{ width: "30%", height: "auto" }}
             >
               <AverageSessionsChart
                 sessions={dashboard.averageSessions.sessions}
               />
             </div>
             <div
+              className="kindActivity"
+              style={{ width: "30%", height: "auto" }}
+            >
+              <KindActivityChart
+                sessions={dashboard.performance.data}
+                kind={dashboard.performance.kind}
+              />
+            </div>
+
+            <div
               className="scoreChart"
-              style={{ width: "258px", height: "263px" }}
+              style={{ width: "30%", height: "auto" }}
             >
               <ScoreChart score={dashboard.user.todayScore} />
             </div>

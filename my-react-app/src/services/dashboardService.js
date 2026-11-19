@@ -56,8 +56,6 @@ export const getDashboard = async (userId, useMocks) => {
     fetchData(`/user/${id}/activity`),
     fetchData(`/user/${id}/performance`),
     fetchData(`/user/${id}/average-sessions`),
-    fetchData(`/user/${id}/score`), // Ajout de la récupération du score
-    fetchData(`/user/${id}/nutriments`), // Ajout de la récupération des nutriments
   ]);
 
   return {
